@@ -17,10 +17,14 @@ public class imagesServlet extends HttpServlet {
         PrintWriter out=response.getWriter();
         try{
             out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ShowImage</title>");
+            out.println("</head>");
             out.println("<body>");
-
-            out.println("111======");
-            out.println(request.getContextPath());
+            out.println("<h1>Servlet image 1: </h1>");
+            out.println("<img src='images/ibm.jpg'/>");
+            out.println("<h1>Servlet image 2: </h1>");
+            out.println("<img src='"+request.getContextPath()+"/images/oracle.jpg" +"'/>");
             out.println("</body>");
             out.println("</html>");
         }finally {
