@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CalcServlet", urlPatterns = "/CalcServlet")
 public class CalcServlet extends HttpServlet {
 
-    private ArrayList<String> listOperations = new ArrayList<>();
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,14 +46,16 @@ public class CalcServlet extends HttpServlet {
 
             // калькуляция
             double result = calcResult(operType, one, two);
+             ArrayList<String> listOperations;
 
             // для новой сессии создаем новый список
             if (session.isNew()) {
-                listOperations.clear();
+                listOperations=new ArrayList<>();
             } 
-//            else { // иначе получаем список из атрибутов сессии
-//                listOperations = (ArrayList<String>) session.getAttribute("formula");
-//            }
+            else { // иначе получаем список из атрибутов сессии
+                listOperations = (ArrayList<String>)
+                        session.getAttribute("formula");
+            }
 
             // добавление новой операции в список и атрибут сессии
             listOperations.add(one + " " + operType.getStringValue() + " " + two + " = " + result);
