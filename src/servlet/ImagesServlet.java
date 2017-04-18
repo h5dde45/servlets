@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "imagesServlet", urlPatterns = "/imagesServlet")
-public class imagesServlet extends HttpServlet {
+@WebServlet(name = "ImagesServlet", urlPatterns = "/ImagesServlet")
+public class ImagesServlet extends HttpServlet {
 
     protected void progressRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
