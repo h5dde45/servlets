@@ -18,6 +18,19 @@
         <url-pattern>/HTMLServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ParamServlet</servlet-name>
+        <servlet-class>servlet.ParamServlet</servlet-class>
+        <init-param>
+            <param-name>init</param-name>
+            <param-value>value1</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ParamServlet</servlet-name>
+        <url-pattern>/ParamServlet</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
