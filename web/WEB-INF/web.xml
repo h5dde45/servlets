@@ -5,12 +5,12 @@
          version="3.1">
 
     <servlet>
-        <servlet-name>SecondServlet</servlet-name>
-        <servlet-class>servlet.SecondServlet</servlet-class>
+        <servlet-name>HTMLServlet</servlet-name>
+        <servlet-class>servlet.HTMLServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SecondServlet</servlet-name>
-        <url-pattern>/SecondServlet</url-pattern>
+        <servlet-name>HTMLServlet</servlet-name>
+        <url-pattern>/HTMLServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
