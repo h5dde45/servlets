@@ -80,6 +80,7 @@ public class CalcServlet extends HttpServlet {
             out.println("<h3>Значения one и two должны быть числами</h3>");
             out.println("<h1>Пример</h1>");
             out.println("<h3>?one=1&two=3&operation=add</h3>");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 
         } finally {
             out.println("</body>");
