@@ -4,6 +4,8 @@
  */
 package servlets;
 
+import calc.TestObject;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -46,6 +48,10 @@ public class CheckOperationsServlet extends HttpServlet {
             }else{
                 out.println("<h1>Операции не найдены</h1>");
             }
+            out.println("<h1>"+
+                    ((TestObject)request.getServletContext().
+                            getAttribute("obj")).getName()
+                    +"</h1>");
 
         } finally {
             out.println("</body>");

@@ -3,6 +3,8 @@ package servlets;
 
 import calc.CalcOperations;
 import calc.OperationType;
+import calc.TestObject;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -40,6 +42,9 @@ public class CalcServlet extends HttpServlet {
 
             // определение или создание сессии
             HttpSession session = request.getSession(true);
+            request.getServletContext().setAttribute("obj",
+                    new TestObject("NewName"));
+
 
             // получение типа операции
             OperationType operType = OperationType.valueOf(opearation.toUpperCase());
