@@ -8,6 +8,9 @@ import calc.TestObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +22,18 @@ import javax.servlet.http.HttpSession;
 public class CalcServlet extends HttpServlet {
 
 
+    public static final String SESSION_MAP = "sessionMap";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        Map<String,List> sessionMap=(Map<String, List>)
+                request.getServletContext().getAttribute("sessionMap");
+
+
+        if(sessionMap==null){
+            sessionMap=new HashMap<>();
+        }
 
 
         response.setContentType("text/html;charset=UTF-8");
@@ -66,16 +78,33 @@ public class CalcServlet extends HttpServlet {
             listOperations.add(one + " " + operType.getStringValue() + " " + two + " = " + result);
             session.setAttribute("formula", listOperations);
 
+            out.println("<table cellpadding=\"20\">");
+            out.println("<tr>");
+            out.println("<td style=\"vertical-align:top;\">");
 
             // вывод всех операций
-            out.println("<h1>ID вашей сессии равен: " + session.getId() + "</h1>");
-            out.println("<h3>Список операций (всего:" + listOperations.size() + ") </h3>");
+            out.println("<h1> " + session.getId() + "</h1>");
 
             for (String oper : listOperations) {
                 out.println("<h3>" + oper + "</h3>");
             }
+            sessionMap.put(session.getId(),listOperations);
+            getServletContext().setAttribute(SESSION_MAP,sessionMap);
 
+            out.println("</td>");
+            out.println("<td style=\"vertical-align:top;\">");
 
+            for(Map.Entry<String,List> entry:sessionMap.entrySet()){
+                String sessionId=entry.getKey();
+                List listopper=entry.getValue();
+                out.println("<h1 style=\"color:red\"> " + sessionId + "</h1>");
+                for(Object o:listopper){
+                    out.println("<h3> " + o + "</h3>");
+                }
+            }
+            out.println("</td>");
+            out.println("</tr>");
+            out.println("</table>");
 
         } catch (Exception ex) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
